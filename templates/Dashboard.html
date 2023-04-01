@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="/static/home.css">
+        <title>Home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--FontAwesome CDN-->
+    <script src="https://kit.fontawesome.com/7cd8c8d709.js" crossorigin="anonymous"></script>
+    <!--Chartjs CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
+
+
+</head>
+<body>
+
+    <!------------------------- Navbar ------------------->
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
+        <!-- <a class="navbar-brand" href="#">Police</a> -->
+        <img class="logo" src="/static/logo.png" alt="logo">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+              <a class="nav-link" href="/index/">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard/">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    <style>
+        body{
+    background: rgb(230, 227, 227);
+    }   
+    .my-card:hover{
+    transform: scale(1.1);
+    transition: 0.2s ease-in-out;
+    }
+    </style>
+
+  
+
+     <p ><h1>Welcome back {{user}} !</h1></p>
+        <div class="col-md-8 mt-4">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    
+                    Dashboard Statistics
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                           
+                                <div class="card my-card shadow">
+                                    <div class="card-body text-center">
+                                        <h4>FeedBacks <i class="fas fa-users"></i></h4>
+                                        <h3>{{ total_feedbacks }}</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                                <div class="card my-card shadow">
+                                   
+                                    <div class="card-body text-center">
+                                        
+                                        <h4>QR <i class="fa-sharp fa-solid fa-qrcode"></i></h4>
+                                        <a href="/qr">Click here</a>
+                                       
+                                    </form>
+                                        
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                                <div class="card my-card shadow">
+                                   <!--  <a class="text-decoration-none text-dark" href=""></a> -->
+                                  <div class="card-body text-center">
+                                        <form action="{% url 'export-to-csv' %}" method="post">
+                                            {% csrf_token %}
+                                            <h4>Download csv <i class="fa-solid fa-download"></i></h4>
+                                            <button type="submit">DownloadFeedbacks</button>
+                                          </form>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       <!--Graphs-->
+       <div class="container">
+        <div class="row my-5">
+            <div class="col-md-6">
+                <div class="bg-white">
+                    <canvas id="myChart1" width="400" height="300"></canvas>
+                    
+                    <script>
+                        var ctx = document.getElementById('myChart1').getContext('2d');
+                        var myChart1 = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: [{% for categ in categry %} {{Category.categ}} {% endfor %}],
+                                datasets: [{
+                                    label: 'Category',
+                                    data: [{{cat1}},{{cat2}},{{cat3}},{{cat4}},],
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        //'rgba(153, 102, 255, 1)',
+                                       // 'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        //'rgba(153, 102, 255, 1)',
+                                       // 'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+                    <div class="card-header bg-dark text-white" style="float:right;
+                    height:330px;
+                    width:500px; 
+                    padding:3px; 
+                    position: absolute;
+                    left: 150%;
+                    top: 5%;
+                    color: #fff;
+                      background:rgb(14, 42, 111);">    
+                    <h1>Feedbacks</h1>
+                    
+                    <div class="card-body" style="  height: 250px; right:0%; 
+                    overflow:auto;
+                     background:#fff; color: black;">
+                    
+                            <ul >
+                                {% for feedback in feedbacks %}
+                                    <li >
+                                        <strong>Name:</strong> {{ feedback.name }}<br>
+                                        <strong>Email:</strong> {{ feedback.email }}<br>
+                                        <strong>City:</strong> {{ feedback.city.city_name }}<br>
+                                        <strong>Station:</strong> {{ feedback.station.stationName }}<br>
+                                        <strong>Category:</strong> {{ feedback.category.categ }}<br>
+                                        <strong>Description:</strong> {{ feedback.description }}<br>
+                                        <h3 style="color: black;">---------------------------------</h3>
+                                    </li>
+                                {% empty %}
+                                    <li>No feedbacks found.</li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Graphs-->
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

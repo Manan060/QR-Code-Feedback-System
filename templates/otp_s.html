@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style1.css">
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <style>
+      .select{
+          padding:8px 12px;
+          box-sizing: content-box;
+          border-bottom-width: 2.5px;
+    border-radius: 6px;
+    margin: top 15px;
+      }
+      .select:focus,
+      .select:hover{
+          outline:none;
+          border:1px solid white;
+  
+      }
+      .select option{
+          background: white;
+      }
+  </style>  
+  
+  </head>
+  <body>
+    <div class="container">
+      <header>Citizen Feedback Form</header>
+
+    <div class="wrapper">
+      <div class="logo">
+        <img src="/static/logo.png" alt="logo" height="75px" width="65px">
+      </div>
+
+        <form action="" method="POST">
+          {% csrf_token %}
+          <div class="form first">
+            <div class="entrance">
+                <div class="fields">
+                    <div class="input-field">
+                        <label>Name</label>
+                        <input class="nm" type="text" placeholder="Enter your name" name="username" required>
+                    </div>
+
+                    <div class="input-field">
+                      <label>Mobile Number</label>
+                      <input class="mn" type="text" placeholder="Enter mobile number" name="phone_number" required>
+                  </div>
+                </div>
+              </div>
+
+                <button class="nextBtn" type="submit">
+                    <span class="btnText">GET OTP</span>
+                </button>
+            </div> 
+        </div>
+      </div>
+  </body>
+</html>

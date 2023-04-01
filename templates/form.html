@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FeedBackForm</title>
+        <!----======== CSS ======== -->
+      <!--  <link rel="stylesheet" href="/static/form.css"> -->
+     
+        <!----===== Iconscout CSS ===== -->
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container" style="background: #14285e;"> <p><h1 style="text-align:center;color:white;">Gujarat Police FeedBackForm </h1></p> 
+    <div class="card">
+        <div class="card-header">
+            FeedBack Form
+        </div>
+        <div class="card-body">
+            <form method="post" id="MemberForm" data-stations-url="{% url 'ajax_load_stations' %}" class="form-horizontal" role="form">
+                {% csrf_token %}
+                {{ form.as_p }}
+            <!--  <div class="mb-3">
+                {{ form.name.label_tag }}
+                {{ form.name }}
+              </div>
+              <div class="mb-3">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+              </div>
+              <div class="mb-3">
+                {{ form.city.label_tag }}
+                {{ form.city }}
+              </div>
+              <div class="mb-3">
+                {{ form.station.label_tag }}
+                {{ form.station }}
+              </div>
+              <div class="mb-3">
+                {{ form.category.label_tag }}
+                {{ form.category }}
+              </div>
+              <div class="mb-3">
+                {{ form.description.label_tag }}
+                {{ form.description }}
+              </div>
+              <div class="mb-3">
+                {{ form.image.label_tag }}
+                {{ form.image }}
+              </div> -->
+                <input type="submit" value="Submit" class="btn btn-primary btn-lg" style="background:#193071;color: white;text-align: center;position: relative; left: 45%;" >
+            </form>
+        </div>
+      </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_city").change(function () {
+        const url = $("#MemberForm").attr("data-stations-url");  // get the url of the `load_cities` view
+        const cityId = $(this).val();  // get the selected country ID from the HTML input
+ 
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= /members/ajax/load-cities/ )
+            data: {
+                'city_id': cityId       // GET parameters
+            },
+            success: function (data) {   
+                $("#id_station").html(data); 
+            }
+        });
+ 
+    });
+</script>
+</body>
+</html>

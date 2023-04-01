@@ -1,0 +1,141 @@
+body{
+    /* background-color: rgb(255, 255, 255); */
+    background-color: rgb(6, 65, 110);
+    height: fit-content;
+}
+.logo{
+    height: 5rem;
+    width: max-content;
+}
+.navbar{
+    background-color: rgb(0, 0, 0);
+}
+.content{
+    text-align: center;
+}
+.steps{
+    color: black;
+    font-size: large;
+}
+.collapse .navbar-nav .nav-item .nav-link{
+    font-size: 1.3rem;
+}
+.nav-link :hover{
+    background-color: aquamarine;
+}
+
+.content{
+    background-color: rgb(6, 65, 110);
+    height: 16rem;
+}
+
+.content h1{
+    color: rgb(212, 100, 2);
+}
+
+.content h2{
+    color: #fff7f1;
+}
+
+.steps{
+    color: green;
+    /* text-shadow: 1px 2px #ff6a00; */
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+@media(max-width:998px){
+    html{
+          font-size: 97%;
+    }
+  }
+  
+  @media(max-width:920px){
+    html{
+          font-size: 85%;
+    }
+  }
+  
+  @media(max-width:820px){
+    html{
+          font-size: 85%;
+    }
+  }
+  
+  @media(max-width:790px){
+    html{
+          font-size: 80%;
+    }
+  }
+  
+  @media(max-width:768px){
+    html{
+          font-size: 85%;
+    }
+  }
+  @media(max-width:607px){
+    html{
+          font-size: 55%;
+    }
+  }
+  @media(max-width:518px){
+    html{
+          font-size: 45%;
+    }
+  }
+  @media(max-width:434px){
+    html{
+          font-size: 45%;
+    }
+  }
+  @media(max-width:414px){
+    html{
+          font-size: 45%;
+    }
+  }
+  
+  @media(max-width:390px){
+    html{
+          font-size: 42%;
+    }
+  }
+  
+  @media(max-width:393px){
+    html{
+          font-size: 42%;
+    }
+  }
+  
+  @media(max-width:375px){
+    html{
+          font-size: 40%;
+    }
+  }
+  @media(max-width:360px){
+    html{
+          font-size: 40%;
+    }
+  }
+  
+  @media(max-width:280px){
+    html{
+          font-size: 30%;
+    }
+  }
+
+
+
+  .FixedHeightContainer
+  {
+    float:right;
+    height: 250px;
+    width:250px; 
+    padding:3px; 
+      background:#f00;
+  }
+  .Content
+  {
+    height:224px;
+     overflow:auto;
+      background:#fff;
+  }
